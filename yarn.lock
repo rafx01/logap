@@ -796,15 +796,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@repo/eslint-config@*", "@repo/eslint-config@file:/home/raphaelf/Documentos/Projects/logap/packages/eslint-config":
+"@repo/eslint-config@*", "@repo/eslint-config@file:/home/raphael/Documents/projects/logap/packages/eslint-config":
   version "0.0.0"
   resolved "file:packages/eslint-config"
 
-"@repo/typescript-config@*", "@repo/typescript-config@file:/home/raphaelf/Documentos/Projects/logap/packages/typescript-config":
+"@repo/typescript-config@*", "@repo/typescript-config@file:/home/raphael/Documents/projects/logap/packages/typescript-config":
   version "0.0.0"
   resolved "file:packages/typescript-config"
 
-"@repo/ui@file:/home/raphaelf/Documentos/Projects/logap/packages/ui":
+"@repo/ui@file:/home/raphael/Documents/projects/logap/packages/ui":
   version "0.0.0"
   resolved "file:packages/ui"
   dependencies:
@@ -3275,13 +3275,19 @@ verkit@^0.3.2:
   resolved "https://registry.npmjs.org/verkit/-/verkit-0.3.2.tgz"
   integrity sha512-zj/ob3UsvJGN0whEAKFp53REA5X66hvffVqoCtVQAakJKnKlH+/PcOfMoFwIG/o4rElqLv/ycAFlx8ZlXUorCg==
 
-"web@file:/home/raphaelf/Documentos/Projects/logap/apps/web":
+"web@file:/home/raphael/Documents/projects/logap/apps/web":
   version "0.1.0"
   resolved "file:apps/web"
   dependencies:
+    "@base-ui/react" "^1.8.0"
+    class-variance-authority "^0.7.1"
+    cn "^0.4.0"
+    lucide-react "^1.49.0"
     next "16.3.7"
     react "19.2.8"
     react-dom "19.2.8"
+    shadcn "^4.21.0"
+    tw-animate-css "^1.4.0"
 
 which@^2.0.1:
   version "2.0.2"
