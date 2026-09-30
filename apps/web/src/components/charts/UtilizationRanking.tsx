@@ -16,7 +16,20 @@ const a = [
 export function UtilizationRanking() {
   return (
     <div>
-      <div></div>
+      <p>Ranking de utilização dos veículos</p>
+      <div className="flex flex-row justify-between text-sm pt-2">
+        <p>Veículo</p>
+        <p>Quilometragem</p>
+      </div>
+      {a.map((i) => (
+        <div
+          key={i.title}
+          className="bg-slate-200 justify-between flex flex-row mt-2 px-2 rounded-lg"
+        >
+          <p>{i.title}</p>
+          <p>{i.km}</p>
+        </div>
+      ))}
     </div>
   );
 }

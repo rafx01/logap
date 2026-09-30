@@ -7,7 +7,7 @@ export function MaintenanceSchedule() {
       <div className="py-2">
         <BaseSelect label="Ordenar por" placeholder="Ordenar por" />
       </div>
-      <table>
+      {/* <table>
         <tr>
           <th>Company</th>
           <th>Contact</th>
@@ -23,7 +23,7 @@ export function MaintenanceSchedule() {
           <td>Francisco Chang</td>
           <td>Mexico</td>
         </tr>
-      </table>
+      </table> */}
     </div>
   );
 }

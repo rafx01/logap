@@ -1,8 +1,14 @@
+import { useGet } from "@/hooks/useGetTest";
 import { CategoryVolume } from "./CategoryVolume";
 import { MaintenanceSchedule } from "./MaintenanceSchedule";
 import { TotalKm } from "./TotalKm";
+import { UtilizationRanking } from "./UtilizationRanking";
 
 export function ChartsSection() {
+  const gettest = useGet();
+
+  console.log(gettest);
+
   return (
     <div className=" p-4  w-full  rounded-lg border border-slate-300">
       <p className="text-black font-medium text-lg">Dashboard</p>
@@ -10,6 +16,7 @@ export function ChartsSection() {
         <TotalKm />
         <CategoryVolume />
         <MaintenanceSchedule />
+        <UtilizationRanking />
       </div>
     </div>
   );
