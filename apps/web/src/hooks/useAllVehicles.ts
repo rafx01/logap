@@ -5,8 +5,9 @@ export function useAllVehicles() {
   return useQuery({
     queryKey: ["getAllVehicles"],
     queryFn: async () => {
-      const { data } = await axios.get(`${process.env.API_URL}/vehicles`);
-      console.log(`LOG ENV:::  ${process.env.API_URL}/vehicles`);
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/vehicles`,
+      );
 
       return data;
     },

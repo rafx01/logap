@@ -7,10 +7,11 @@ type props = {
 
 export function useTotalKm({ vehicleId }: props) {
   return useQuery({
-    queryKey: ["getTotalKm"],
+    queryKey: ["getTotalKm", vehicleId],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${process.env.API_URL}/total-km?vehicleId=${vehicleId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/total-km`,
+        { params: { vehicleId } },
       );
       return data;
     },
