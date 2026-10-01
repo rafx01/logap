@@ -15,7 +15,7 @@ const a = [
 
 export function UtilizationRanking() {
   return (
-    <div>
+    <div className="pl-4 border-l">
       <p>Ranking de utilização dos veículos</p>
       <div className="flex flex-row justify-between text-sm pt-2">
         <p>Veículo</p>

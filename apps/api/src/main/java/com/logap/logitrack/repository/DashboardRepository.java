@@ -1,12 +1,14 @@
 package com.logap.logitrack.repository;
 
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import com.logap.logitrack.dto.CategoryVolumeResponse;
+import com.logap.logitrack.dto.MaintenanceScheduleResponse;
 import com.logap.logitrack.model.VehicleCategory;
 
 @Repository
@@ -45,4 +47,27 @@ public class DashboardRepository {
                 .list();
     }
 
+    public List<MaintenanceScheduleResponse> maintenanceSchedule(int limit) {
+        return jdbc.sql("""
+                SELECT m.id, m.data_inicio, m.data_finalizacao, m.tipo_servico, m.custo_estimado, m.status,
+                       ve.id AS veiculo_id, ve.placa, ve.modelo
+                FROM manutencoes m
+                JOIN veiculos ve ON ve.id = m.veiculo_id
+                WHERE m.status = 'PENDENTE'
+                ORDER BY m.data_inicio, m.id
+                LIMIT :limite
+                """)
+                .param("limite", limit)
+                .query((rs, i) -> new MaintenanceScheduleResponse(
+                        rs.getInt("id"),
+                        rs.getInt("veiculo_id"),
+                        rs.getString("placa"),
+                        rs.getString("modelo"),
+                        rs.getObject("data_inicio", LocalDate.class),
+                        rs.getObject("data_finalizacao", LocalDate.class),
+                        rs.getString("tipo_servico"),
+                        rs.getBigDecimal("custo_estimado"),
+                        rs.getString("status")))
+                .list();
+    }
 }

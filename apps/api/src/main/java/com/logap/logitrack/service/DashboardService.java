@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.logap.logitrack.dto.CategoryVolumeResponse;
+import com.logap.logitrack.dto.MaintenanceScheduleResponse;
 import com.logap.logitrack.dto.TotalKmResponse;
 import com.logap.logitrack.model.VehicleCategory;
 import com.logap.logitrack.repository.DashboardRepository;
@@ -27,5 +28,9 @@ public class DashboardService {
     public List<CategoryVolumeResponse> categoryVolume(VehicleCategory vehicleCategory) {
 
         return dashboardRepository.categoryVolume(vehicleCategory);
+    }
+
+    public List<MaintenanceScheduleResponse> maintenanceSchedule() {
+        return dashboardRepository.maintenanceSchedule(10);
     }
 }

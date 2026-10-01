@@ -1,29 +1,47 @@
-import { BaseSelect } from "../ui/BaseSelect/BaseSelect";
+import { useMaintenanceSchedule } from "@/hooks/useMaintenances";
+
+function formatDate(date: string) {
+  const [year, month, day] = date.split("-");
+  return `${day}/${month}/${year}`;
+}
 
 export function MaintenanceSchedule() {
+  const maintenance = useMaintenanceSchedule();
+
   return (
-    <div>
-      <p>Cronograma de manutenção</p>
-      <div className="py-2">
-        <BaseSelect label="Ordenar por" placeholder="Ordenar por" />
+    <div className="pr-2">
+      <p className="pb-2">Cronograma de manutenção</p>
+
+      <div className="h-full">
+        {maintenance.isLoading ? (
+          <p>carregando...</p>
+        ) : !maintenance.data?.length ? (
+          <p className="text-sm">Nenhuma manutenção pendente</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-4 gap-x-2 text-sm">
+              <p>Veículo</p>
+              <p>Serviço</p>
+              <p>Início</p>
+              <p className="text-right">Custo estimado</p>
+            </div>
+            {maintenance.data.map((i) => (
+              <div
+                key={i.id}
+                className="bg-slate-200 grid grid-cols-4 gap-x-2 mt-2 px-2 rounded-lg"
+              >
+                <p>
+                  {i.modelo}{" "}
+                  <span className="text-xs text-slate-600">{i.placa}</span>
+                </p>
+                <p>{i.tipoServico}</p>
+                <p>{formatDate(i.dataInicio)}</p>
+                <p className="text-right">{i.custoEstimado} R$</p>
+              </div>
+            ))}
+          </>
+        )}
       </div>
-      {/* <table>
-        <tr>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-      </table> */}
     </div>
   );
 }
