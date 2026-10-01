@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 
 const queryClient = new QueryClient();
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: any) {
   return (
     <html
       lang="en"

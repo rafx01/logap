@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export function useGet() {
+export function useAllVehicles() {
   return useQuery({
-    queryKey: ["teste"],
+    queryKey: ["getAllVehicles"],
     queryFn: async () => {
-      const { data } = await axios.get("https://httpbin.org/get");
+      const { data } = await axios.get(`${process.env.API_URL}/`);
       return data;
     },
   });
