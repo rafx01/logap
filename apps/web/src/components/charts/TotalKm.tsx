@@ -30,12 +30,14 @@ export function TotalKm() {
             onChange={setSelectedVehicleId}
             placeholder="Selecione um veículo"
           />
-          <button
-            className="cursor-pointer"
-            onClick={() => setSelectedVehicleId(null)}
-          >
-            Limpar
-          </button>
+          {selectedVehicleId && (
+            <button
+              className="cursor-pointer"
+              onClick={() => setSelectedVehicleId(null)}
+            >
+              Limpar
+            </button>
+          )}
         </div>
       )}
       <div className="pt-4">
