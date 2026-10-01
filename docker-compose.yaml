@@ -22,8 +22,33 @@ services:
     depends_on:
       - postgres
 
-  # web:
-  # api:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: web
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/web/node_modules
+      - /app/apps/web/.next
+    ports:
+      - "8666:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+
+  api:
+    build:
+      context: apps/api
+    container_name: api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
 
 volumes:
   pgdata:

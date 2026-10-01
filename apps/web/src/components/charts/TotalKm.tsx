@@ -1,8 +1,13 @@
 import { useTotalKm } from "@/hooks/useTotalKm";
 import { BaseSelect } from "../ui/BaseSelect/BaseSelect";
+import { useAllVehicles } from "@/hooks/useAllVehicles";
 
 export function TotalKm() {
-  const totalKm = useTotalKm({ vehicleId: 1 });
+  const vehicles = useAllVehicles();
+
+  console.log("vehicles:: ", vehicles);
+
+  //const totalKm = useTotalKm({ vehicleId: 1 });
 
   return (
     <div className="">

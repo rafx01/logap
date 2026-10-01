@@ -2,14 +2,14 @@ package com.logap.logitrack.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.logap.logitrack.dto.VehicleResponse;
 import com.logap.logitrack.service.VehicleService;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+@RestController
 @RequestMapping
 public class VehicleController {
     private final VehicleService vehicleService;
