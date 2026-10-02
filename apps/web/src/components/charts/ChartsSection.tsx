@@ -1,4 +1,5 @@
 import { CategoryVolume } from "./CategoryVolume";
+import { FinancialProjection } from "./FinancialProjection";
 import { MaintenanceSchedule } from "./MaintenanceSchedule";
 import { TotalKm } from "./TotalKm";
 import { UtilizationRanking } from "./UtilizationRanking";
@@ -12,6 +13,7 @@ export function ChartsSection() {
         <CategoryVolume />
         <MaintenanceSchedule />
         <UtilizationRanking />
+        <FinancialProjection />
       </div>
     </div>
   );

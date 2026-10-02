@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import com.logap.logitrack.dto.CategoryVolumeResponse;
+import com.logap.logitrack.dto.FinancialProjectionResponse;
 import com.logap.logitrack.dto.MaintenanceScheduleResponse;
+import com.logap.logitrack.dto.UtilizationRankingResponse;
 import com.logap.logitrack.model.VehicleCategory;
 
 @Repository
@@ -70,4 +72,43 @@ public class DashboardRepository {
                         rs.getString("status")))
                 .list();
     }
+
+    public List<UtilizationRankingResponse> utilizationRanking(int limit) {
+        return jdbc.sql("""
+                SELECT ve.id, ve.placa, ve.modelo, ve.tipo,
+                       COALESCE(SUM(vi.km_percorrida), 0) AS km_total,
+                       COUNT(vi.id) AS quantidade_viagens
+                FROM veiculos ve
+                LEFT JOIN viagens vi ON vi.veiculo_id = ve.id
+                GROUP BY ve.id
+                ORDER BY km_total DESC, ve.id
+                LIMIT :limite
+                """)
+                .param("limite", limit)
+                .query((rs, i) -> new UtilizationRankingResponse(
+                        i + 1,
+                        rs.getInt("id"),
+                        rs.getString("placa"),
+                        rs.getString("modelo"),
+                        VehicleCategory.valueOf(rs.getString("tipo")),
+                        rs.getBigDecimal("km_total"),
+                        rs.getLong("quantidade_viagens")))
+                .list();
+    }
+
+    public FinancialProjectionResponse financialProjection() {
+        return jdbc.sql("""
+                SELECT to_char(date_trunc('month', CURRENT_DATE), 'YYYY-MM') AS mes,
+                       COALESCE(SUM(custo_estimado), 0) AS custo_total,
+                       COUNT(*) AS quantidade
+                FROM manutencoes
+
+                """)
+                .query((rs, i) -> new FinancialProjectionResponse(
+                        rs.getString("mes"),
+                        rs.getBigDecimal("custo_total"),
+                        rs.getLong("quantidade")))
+                .single();
+    }
+
 }

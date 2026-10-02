@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.logap.logitrack.dto.CategoryVolumeResponse;
+import com.logap.logitrack.dto.FinancialProjectionResponse;
 import com.logap.logitrack.dto.MaintenanceScheduleResponse;
 import com.logap.logitrack.dto.TotalKmResponse;
+import com.logap.logitrack.dto.UtilizationRankingResponse;
 import com.logap.logitrack.model.VehicleCategory;
 import com.logap.logitrack.repository.DashboardRepository;
 
@@ -31,6 +33,14 @@ public class DashboardService {
     }
 
     public List<MaintenanceScheduleResponse> maintenanceSchedule() {
-        return dashboardRepository.maintenanceSchedule(10);
+        return dashboardRepository.maintenanceSchedule(5);
+    }
+
+    public List<UtilizationRankingResponse> utilizationRanking() {
+        return dashboardRepository.utilizationRanking(5);
+    }
+
+    public FinancialProjectionResponse financialProjection() {
+        return dashboardRepository.financialProjection();
     }
 }
